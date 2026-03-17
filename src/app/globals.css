@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: light;
+}
+
+/* Override daisyUI primary color to our pleasing blue */
+@layer base {
+  :root {
+    --primary: oklch(62% 0.2 260);      /* ≈ #2563eb */
+    --primary-focus: oklch(55% 0.2 260); /* darker hover ≈ #1d4ed8 */
+    --primary-content: oklch(98% 0 0);   /* white text on primary */
+
+    --base-100: oklch(98% 0.01 240);     /* very light gray-blue tint */
+    --base-200: oklch(95% 0.01 240);
+    --base-300: oklch(92% 0.01 240);
+
+    --neutral: oklch(40% 0.05 240);
+    --neutral-content: oklch(98% 0 0);
+  }
+
+  body {
+    @apply bg-base-100 text-base-content min-h-screen;
+  }
+}
