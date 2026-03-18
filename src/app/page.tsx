@@ -1,41 +1,41 @@
-import { MotionDiv } from "@/components/motion/MotionDiv";
-import { fadeInUp } from "@/lib/animations";
+// src/app/page.tsx
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import { MotionDiv } from '@/components/motion/MotionDiv';
+import { fadeInUp, staggerContainer } from '@/lib/animations';
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-6 bg-base-100">
-      <MotionDiv
-  variants={fadeInUp}
-  className="text-5xl font-bold text-primary"
->
-  JobPulse AI
-</MotionDiv>
+    <>
+      <Navbar />
 
-      <p className="text-xl mb-10 text-center max-w-2xl text-base-content/80">
-        Next-generation job recruitment platform with AI-powered matching, career assistant, 
-        smart recommendations and instant insights.
-      </p>
+      <main className="container mx-auto px-6 pt-12 pb-24">
+        <MotionDiv
+          variants={staggerContainer(0.2)}
+          className="max-w-5xl mx-auto text-center"
+        >
+          <MotionDiv variants={fadeInUp} className="mb-8">
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight">
+              <span className="text-primary">AI-Powered</span> Job Hunting
+            </h1>
+          </MotionDiv>
 
-      <div className="card bg-base-200 shadow-2xl w-full max-w-lg border border-base-300/30">
-        <div className="card-body items-center text-center">
-          <h2 className="card-title text-3xl text-base-content">
-            Welcome to smarter hiring
-          </h2>
-          <p className="py-6 text-base-content/70">
-            Discover opportunities, get AI-tailored job suggestions, 
-            chat with career AI — everything in one powerful dashboard.
-          </p>
-          <div className="card-actions mt-4">
-            <button className="btn btn-primary btn-lg px-12">
-              Browse Jobs
+          <MotionDiv variants={fadeInUp} className="mb-12">
+            <p className="text-xl md:text-2xl text-base-content/80 max-w-3xl mx-auto">
+              Get matched to jobs instantly, talk to AI career coach, optimize resume — 
+              all in one futuristic platform
+            </p>
+          </MotionDiv>
+
+          <MotionDiv variants={fadeInUp}>
+            <button className="btn btn-primary btn-lg px-12 py-4 text-xl shadow-2xl shadow-primary/30 hover:shadow-primary/50 transition-shadow duration-500">
+              Start Exploring Jobs
             </button>
-          </div>
-        </div>
-      </div>
+          </MotionDiv>
+        </MotionDiv>
+      </main>
 
-      <p className="mt-16 text-sm text-base-content/50">
-        © {new Date().getFullYear()} JobPulse AI • Built with passion
-      </p>
-    </main>
+      <Footer />
+    </>
   );
 }

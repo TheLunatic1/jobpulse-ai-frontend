@@ -1,0 +1,38 @@
+// src/components/icons.tsx
+import {
+  Briefcase,
+  Search,
+  Building2,
+  Bot,
+  UserCircle,
+  LogIn,
+  UserPlus,
+  Menu,
+  X,
+  ChevronDown,
+  Heart,
+  Star,
+  MapPin,
+  DollarSign,
+  Clock,
+  Send,
+} from 'lucide-react';
+
+export const Icons = {
+  Briefcase,
+  Search,
+  Building: Building2,
+  Bot,
+  User: UserCircle,
+  Login: LogIn,
+  Register: UserPlus,
+  Menu,
+  Close: X,
+  ChevronDown,
+  Heart,
+  Star,
+  Location: MapPin,
+  Salary: DollarSign,
+  Clock,
+  Send,
+};

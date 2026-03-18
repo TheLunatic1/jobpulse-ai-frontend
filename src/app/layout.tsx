@@ -1,13 +1,21 @@
+// src/app/layout.tsx
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ForceDarkMode from "@/components/ForceDarkMode";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "JobPulse AI - Smart Job Recruitment Portal",
-  description: "AI-powered job matching, career guidance, and recruitment platform",
+  title: "JobPulse AI – Smart Job Recruitment with AI",
+  description: "AI-powered job matching, career guidance, resume optimization and recruitment platform",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -20,7 +28,9 @@ export default function RootLayout({
       <head>
         <meta name="color-scheme" content="dark" />
       </head>
-      <body className={inter.className}>
+      <body
+        className={`${inter.variable} font-sans antialiased bg-base-100 text-base-content min-h-screen`}
+      >
         <ForceDarkMode />
         {children}
       </body>
