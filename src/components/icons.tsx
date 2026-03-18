@@ -1,4 +1,3 @@
-// src/components/icons.tsx
 import {
   Briefcase,
   Search,

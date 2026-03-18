@@ -1,4 +1,3 @@
-// src/components/Navbar.tsx
 'use client';
 
 import { useState } from 'react';
@@ -57,14 +56,14 @@ export default function Navbar() {
                 filter: 'brightness(1.15)',
                 transition: { duration: 0.4 },
               }}
-              className="text-3xl md:text-3.5xl font-extrabold tracking-tight bg-gradient-to-r from-primary via-blue-400 to-primary bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient-x"
+              className="text-3xl md:text-3.5xl font-extrabold tracking-tight bg-linear-to-r from-primary via-blue-400 to-primary bg-size-[200%_auto] bg-clip-text text-transparent animate-gradient-x"
             >
               JobPulse AI
             </motion.div>
 
             {/* subtle glow ring on hover */}
             <motion.div
-              className="absolute -inset-2 rounded-full bg-gradient-to-r from-primary/20 to-blue-500/20 opacity-0 blur-xl pointer-events-none"
+              className="absolute -inset-2 rounded-full bg-linear-to-r from-primary/20 to-blue-500/20 opacity-0 blur-xl pointer-events-none"
               animate={{ opacity: [0, 0.3, 0] }}
               transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
             />
@@ -85,7 +84,7 @@ export default function Navbar() {
                 >
                   {item.icon && <item.icon className="w-5 h-5 transition-transform group-hover:scale-110" />}
                   <span>{item.name}</span>
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-blue-400 transition-all duration-400 group-hover:w-full" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-linear-to-r from-primary to-blue-400 transition-all duration-400 group-hover:w-full" />
                 </Link>
               </motion.div>
             ))}

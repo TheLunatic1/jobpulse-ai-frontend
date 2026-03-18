@@ -1,4 +1,3 @@
-// src/components/FeaturedJobsSection.tsx
 'use client';
 
 import { motion } from 'framer-motion';
@@ -10,7 +9,7 @@ export default function FeaturedJobsSection() {
     <section className="py-24 bg-base-200 relative overflow-hidden">
       {/* Animated subtle background */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5"
+        className="absolute inset-0 bg-linear-to-r from-primary/5 via-transparent to-primary/5"
         animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
         transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
       />
