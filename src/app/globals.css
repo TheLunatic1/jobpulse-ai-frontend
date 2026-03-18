@@ -1,25 +1,50 @@
+/* ================================================
+   JobPulse AI - Global Styles (Dark Mode Default)
+   Tailwind v4 + daisyUI v5 – CSS-first config
+   Dark theme forced as default
+   ================================================ */
+
 @import "tailwindcss";
 
 @plugin "daisyui" {
-  themes: light;
+  themes: dark;
 }
 
-/* Override daisyUI primary color to our pleasing blue */
+/* ──────────────────────────────────────────────
+   Force dark mode as default + custom colors
+   ────────────────────────────────────────────── */
 @layer base {
   :root {
-    --primary: oklch(62% 0.2 260);      /* ≈ #2563eb */
-    --primary-focus: oklch(55% 0.2 260); /* darker hover ≈ #1d4ed8 */
-    --primary-content: oklch(98% 0 0);   /* white text on primary */
+    color-scheme: dark;
 
-    --base-100: oklch(98% 0.01 240);     /* very light gray-blue tint */
-    --base-200: oklch(95% 0.01 240);
-    --base-300: oklch(92% 0.01 240);
+    /* Primary: modern blue that pops nicely in dark mode */
+    --primary: oklch(70% 0.18 260);        /* ≈ #3b82f6 – vibrant but not blinding */
+    --primary-focus: oklch(62% 0.18 260);  /* hover ≈ #2563eb */
+    --primary-content: oklch(98% 0 0);     /* white text on primary */
 
-    --neutral: oklch(40% 0.05 240);
-    --neutral-content: oklch(98% 0 0);
+    /* Base backgrounds – deep dark with subtle blue/gray tint */
+    --base-100: oklch(15% 0.02 240);       /* main background ≈ #0f172a */
+    --base-200: oklch(18% 0.025 240);
+    --base-300: oklch(22% 0.03 240);
+
+    /* Text & neutral */
+    --neutral: oklch(80% 0.03 240);
+    --neutral-content: oklch(20% 0.02 240);
+
+    /* Card / surface */
+    --base-content: oklch(95% 0.02 240);
+  }
+
+  html {
+    @apply scroll-smooth;
   }
 
   body {
-    @apply bg-base-100 text-base-content min-h-screen;
+    @apply bg-base-100 text-base-content antialiased min-h-screen;
   }
+}
+
+/* Selection highlight in dark mode */
+::selection {
+  @apply bg-primary/30 text-primary-content;
 }
