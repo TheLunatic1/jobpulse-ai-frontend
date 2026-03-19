@@ -136,18 +136,6 @@ export default function RegisterPage() {
           )}
         </motion.button>
       </form>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-        className="mt-6 text-center text-sm text-gray-400"
-      >
-        Already have an account?{' '}
-        <a href="/auth/login" className="text-blue-400 hover:text-blue-300 transition-colors">
-          Sign in
-        </a>
-      </motion.div>
     </div>
   );
 }

@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/purity */
-'use client';   // ← This is the key fix
+'use client';
 
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
-// Pre-compute particles once (pure, outside render)
+// Pre-compute particle positions (pure data, outside render)
 const particles = Array.from({ length: 30 }, (_, i) => ({
   id: i,
   initialX: Math.random() * 100,
@@ -52,6 +53,33 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
         className="relative z-10 w-full max-w-md bg-gray-900/70 backdrop-blur-xl border border-gray-700/50 rounded-2xl shadow-2xl shadow-blue-900/30 p-8"
       >
         {children}
+
+        {/* Navigation links - always show both */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="mt-8 text-center text-sm text-gray-400 space-y-3"
+        >
+          <p>
+            Don&apos;t have an account?{' '}
+            <Link href="/register" className="text-blue-400 hover:text-blue-300 transition-colors font-medium">
+              Sign up
+            </Link>
+          </p>
+          <p>
+            Already have an account?{' '}
+            <Link href="/login" className="text-blue-400 hover:text-blue-300 transition-colors font-medium">
+              Sign in
+            </Link>
+          </p>
+          <Link href="#" className="text-blue-400 hover:text-blue-300 transition-colors block">
+            Forgot password?
+          </Link>
+          <Link href="/" className="text-blue-400 hover:text-blue-300 transition-colors block">
+            Home
+          </Link>
+        </motion.div>
       </motion.div>
     </div>
   );

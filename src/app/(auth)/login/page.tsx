@@ -110,23 +110,6 @@ export default function LoginPage() {
           )}
         </motion.button>
       </form>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-        className="mt-6 text-center text-sm text-gray-400 space-y-2"
-      >
-        <p>
-          Don&apos;t have an account?{' '}
-          <a href="/auth/register" className="text-blue-400 hover:text-blue-300 transition-colors">
-            Sign up
-          </a>
-        </p>
-        <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors">
-          Forgot password?
-        </a>
-      </motion.div>
     </div>
   );
 }

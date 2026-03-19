@@ -15,6 +15,7 @@ import {
   DollarSign,
   Clock,
   Send,
+  LogOut,
 } from 'lucide-react';
 
 export const Icons = {
@@ -23,6 +24,7 @@ export const Icons = {
   Building: Building2,
   Bot,
   User: UserCircle,
+  UserCircle,
   Login: LogIn,
   Register: UserPlus,
   Menu,
@@ -34,4 +36,5 @@ export const Icons = {
   Salary: DollarSign,
   Clock,
   Send,
+  Logout: LogOut,
 };

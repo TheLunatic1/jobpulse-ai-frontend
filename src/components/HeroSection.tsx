@@ -43,8 +43,8 @@ function useTypingLine(text: string, speed = 68, startDelay = 0) {
 }
 
 export default function HeroSection() {
-  const line1 = useTypingLine('Find Your Dream Job', 70, 300);
-  const line2 = useTypingLine('with AI Power', 70, 1700);
+  const line1 = useTypingLine('Find Your Dream Job', 70, 500);
+  const line2 = useTypingLine('with AI Power', 70, 1500);
 
   const activeLine = line1.isActive ? 1 : line2.isActive ? 2 : 1;
 
