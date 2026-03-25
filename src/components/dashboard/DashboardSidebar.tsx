@@ -31,16 +31,20 @@ export default function DashboardSidebar({
     { id: 'recommended-jobs', label: 'Recommended Jobs', icon: <Icons.Search className="w-5 h-5" />, visibleFor: ['jobseeker'] },
     { id: 'ai-coach', label: 'AI Coach', icon: <Icons.Bot className="w-5 h-5" />, visibleFor: ['jobseeker'] },
     { id: 'my-applications', label: 'My Applications', icon: <Icons.Send className="w-5 h-5" />, visibleFor: ['jobseeker'] },
+
     { id: 'post-job', label: 'Post New Job', icon: <Icons.Building className="w-5 h-5" />, visibleFor: ['employer'] },
     { id: 'my-postings', label: 'My Postings', icon: <Icons.Briefcase className="w-5 h-5" />, visibleFor: ['employer'] },
     { id: 'applications', label: 'Applications', icon: <Icons.Send className="w-5 h-5" />, visibleFor: ['employer'] },
+
     { id: 'manage-users', label: 'Manage Users', icon: <Icons.UserCircle className="w-5 h-5" />, visibleFor: ['admin'] },
     { id: 'manage-jobs', label: 'Manage Jobs', icon: <Icons.Briefcase className="w-5 h-5" />, visibleFor: ['admin'] },
     { id: 'broadcast', label: 'Broadcast', icon: <Icons.Send className="w-5 h-5" />, visibleFor: ['admin'] },
     { id: 'messages', label: 'Messages', icon: <Icons.Send className="w-5 h-5" />, visibleFor: ['jobseeker', 'employer'] },
   ];
 
-  const visibleItems = menuItems.filter(item => !item.visibleFor || item.visibleFor.includes(user?.role || ''));
+  const visibleItems = menuItems.filter(item => 
+    !item.visibleFor || item.visibleFor.includes(user?.role || '')
+  );
 
   return (
     <motion.div
@@ -52,7 +56,10 @@ export default function DashboardSidebar({
       <div className="p-6">
         <div className="flex items-center justify-between mb-8">
           <Link href="/" className="text-2xl font-bold text-primary">JobPulse AI</Link>
-          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="lg:hidden text-3xl">
+          <button 
+            onClick={() => setSidebarOpen(!sidebarOpen)} 
+            className="lg:hidden text-3xl text-base-content/70"
+          >
             {sidebarOpen ? '✕' : '☰'}
           </button>
         </div>
@@ -64,18 +71,18 @@ export default function DashboardSidebar({
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => {
-                setActiveView(item.id);
+                setActiveView(item.id);   // ← This makes it behave like Post Job and AI Coach
                 if (window.innerWidth < 1024) setSidebarOpen(false);
               }}
               className={cn(
-                'flex items-center gap-3 w-full p-4 rounded-xl transition-all',
+                "flex items-center gap-3 w-full p-4 rounded-xl transition-all font-medium",
                 activeView === item.id
-                  ? 'bg-primary text-white shadow-md'
-                  : 'hover:bg-base-300'
+                  ? "bg-primary text-white shadow-md"
+                  : "hover:bg-base-300"
               )}
             >
               {item.icon}
-              <span className="font-medium">{item.label}</span>
+              <span>{item.label}</span>
             </motion.button>
           ))}
 
