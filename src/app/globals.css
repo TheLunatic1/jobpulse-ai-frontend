@@ -5,28 +5,24 @@
 }
 
 /* ──────────────────────────────────────────────
-   Force dark mode as default + custom colors
+   Clean Dark Theme + Better Spacing
    ────────────────────────────────────────────── */
 @layer base {
   :root {
     color-scheme: dark;
 
-    /* Primary: modern blue that pops nicely in dark mode */
-    --primary: oklch(70% 0.18 260);        /* ≈ #3b82f6 – vibrant but not blinding */
-    --primary-focus: oklch(62% 0.18 260);  /* hover ≈ #2563eb */
-    --primary-content: oklch(98% 0 0);     /* white text on primary */
+    /* Primary - Nice vibrant blue */
+    --primary: oklch(68% 0.22 260);
+    --primary-focus: oklch(58% 0.22 260);
+    --primary-content: oklch(98% 0 0);
 
-    /* Base backgrounds – deep dark with subtle blue/gray tint */
-    --base-100: oklch(15% 0.02 240);       /* main background ≈ #0f172a */
-    --base-200: oklch(18% 0.025 240);
-    --base-300: oklch(22% 0.03 240);
+    /* Base colors - Better contrast & depth */
+    --base-100: oklch(12% 0.01 240);     /* Main background */
+    --base-200: oklch(16% 0.015 240);    /* Cards & surfaces */
+    --base-300: oklch(21% 0.02 240);     /* Borders & subtle elements */
 
-    /* Text & neutral */
-    --neutral: oklch(80% 0.03 240);
-    --neutral-content: oklch(20% 0.02 240);
-
-    /* Card / surface */
-    --base-content: oklch(95% 0.02 240);
+    --base-content: oklch(94% 0.01 240); /* Main text */
+    --neutral: oklch(75% 0.02 240);
   }
 
   html {
@@ -35,35 +31,43 @@
 
   body {
     @apply bg-base-100 text-base-content antialiased min-h-screen;
+    font-feature-settings: "kern" 1, "liga" 1;
   }
 }
 
-/* Selection highlight in dark mode */
+/* Better card & button defaults */
+@layer components {
+  .card {
+    @apply bg-base-200 border border-base-300 rounded-3xl p-8 shadow-sm;
+  }
+
+  .btn {
+    @apply rounded-2xl font-medium transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply hover:brightness-110 active:scale-95;
+  }
+}
+
+/* Selection highlight */
 ::selection {
   @apply bg-primary/30 text-primary-content;
 }
 
-
-
-/* For background gradient slow shift */
-.animate-gradient-slow {
-  animation: gradient 18s ease infinite;
-}
-
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* For headline gradient text shift */
+/* Gentle gradient animation for hero text */
 .animate-gradient-x {
   background-size: 200% auto;
-  animation: gradient-x 10s linear infinite;
+  animation: gradient-x 12s linear infinite;
 }
 
 @keyframes gradient-x {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+/* Extra breathing room for sections */
+section {
+  @apply py-20;
 }

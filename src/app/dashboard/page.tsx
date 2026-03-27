@@ -13,6 +13,7 @@ import PostJobForm from '@/components/dashboard/PostJobForm';
 import MyApplications from '@/components/dashboard/MyApplications';
 import MyPostings from '@/components/dashboard/MyPostings';
 import EmployerApplications from '@/components/dashboard/EmployerApplications';
+import AdminPanel from '@/components/dashboard/AdminPanel';
 
 export default function DashboardPage() {
   const { user, token, loading } = useAuth();
@@ -74,6 +75,9 @@ export default function DashboardPage() {
             {activeView === 'my-postings' && <MyPostings />}
 
             {activeView === 'applications' && <EmployerApplications />}
+
+            {activeView === 'manage-users' && <AdminPanel activeView={activeView} />}
+            {activeView === 'manage-jobs' && <AdminPanel activeView={activeView} />}
 
             {/* Add more views here later */}
           </AnimatePresence>

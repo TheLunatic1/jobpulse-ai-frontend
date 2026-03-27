@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { motion } from 'framer-motion';
@@ -5,6 +6,7 @@ import Link from 'next/link';
 import { Icons } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 type MenuItem = {
   id: string;
@@ -25,6 +27,7 @@ export default function DashboardSidebar({
   setSidebarOpen: (open: boolean) => void;
 }) {
   const { user, logout } = useAuth();
+  const router = useRouter();
 
   const menuItems: MenuItem[] = [
     { id: 'overview', label: 'Overview', icon: <Icons.Briefcase className="w-5 h-5" /> },
@@ -45,6 +48,11 @@ export default function DashboardSidebar({
   const visibleItems = menuItems.filter(item => 
     !item.visibleFor || item.visibleFor.includes(user?.role || '')
   );
+
+  const handleClick = (item: MenuItem) => {
+    setActiveView(item.id);
+    if (window.innerWidth < 1024) setSidebarOpen(false);
+  };
 
   return (
     <motion.div
@@ -70,10 +78,7 @@ export default function DashboardSidebar({
               key={item.id}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              onClick={() => {
-                setActiveView(item.id);   // ← This makes it behave like Post Job and AI Coach
-                if (window.innerWidth < 1024) setSidebarOpen(false);
-              }}
+              onClick={() => handleClick(item)}
               className={cn(
                 "flex items-center gap-3 w-full p-4 rounded-xl transition-all font-medium",
                 activeView === item.id
