@@ -1,6 +1,7 @@
 # JobPulse AI – Frontend
 
-A stunning, heavily animated AI-powered job recruitment portal built with **Next.js 15** as my final year project.
+A stunning full-stack AI-powered job portal with role-based dashboards, real-time messaging, and an intelligent
+Grok-3-Mini Career Coach.
 
 ![JobPulse AI](/preview.png)
 
