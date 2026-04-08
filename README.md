@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JobPulse AI – Frontend
 
-## Getting Started
+A stunning, heavily animated AI-powered job recruitment portal built with **Next.js 15** as my final year project.
 
-First, run the development server:
+![JobPulse AI](/preview.png)
+
+## ✨ Live Demo
+[View Live Demo](https://jobpulse-ai-frontend.vercel.app)
+
+## 🚀 Tech Stack
+- **Next.js 15** (App Router + React Compiler)
+- **TypeScript**
+- **Tailwind CSS v4 + DaisyUI**
+- **Framer Motion**
+- **Lucide React** (Icons)
+- **React Toastify** + **Confetti**
+- **Axios** for API calls
+- **Socket.io**
+## 🎯 Key Features
+
+### For Job Seekers
+- Apply with cover letter in a smooth modal
+- **AI Career Coach** – 24/7 intelligent guidance powered by Grok-3-Mini
+- Track all applications with real-time status
+
+### For Employers
+- Post new jobs (pending admin approval)
+- Manage postings and view received applications
+- Simple, elegant dashboard
+
+### For Admin
+- Review & approve/reject pending jobs
+- Manage all users
+- Full platform oversight
+
+### General
+- Fully responsive dark-first modern design
+- Role-based dashboards with smooth sidebar
+- Heavy Framer Motion animations (stagger, spring, hover effects)
+- Secure JWT authentication
+- Chat system is still in devlopment
+
+## 🛠️ Installation & Setup
 
 ```bash
+git clone https://github.com/TheLunatic1/jobpulse-ai-frontend.git
+cd jobpulse-ai-frontend
+
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create `.env.local`:
+```env
+NEXT_PUBLIC_API_URL=https://jobpulse-ai-backend.onrender.com
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📱 Pages
+- `/` – Home with Hero, Featured Jobs, Why Choose Us, Impact Stats, Trusted By, Testimonials
+- `/jobs` – All open positions
+- `/companies` – Company directory
+- `/companies/[id]` – Company profile
+- `/ai-coach` – Dedicated AI Coach landing
+- `/about` – About the project
+- `/dashboard` – Role-based dashboard (Job Seeker / Employer / Admin)
+- `/auth/login` & `/auth/register`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Highlights for Resume
+- Heavy use of Framer Motion for buttery smooth animations
+- Role-based authentication and protected routes
+- Real-time features using Socket.IO (backend)
+- Clean, maintainable TypeScript codebase
+- Fully responsive design with Tailwind + DaisyUI
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Made by **Salman Toha**  

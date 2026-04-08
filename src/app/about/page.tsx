@@ -94,8 +94,8 @@ export default function AboutPage() {
           </motion.div>
 
           <div className="text-center pt-10">
-            <p className="text-2xl font-medium">Made with ❤️ by Salman Toha</p>
-            <p className="text-base-content/60 mt-2">Final Year Project Showcase</p>
+            <p className="text-2xl font-medium">Made by Salman Toha</p>
+            <p className="text-base-content/60 mt-2">Project Showcase</p>
           </div>
         </div>
       </div>
