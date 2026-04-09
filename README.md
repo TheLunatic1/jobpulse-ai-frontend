@@ -67,11 +67,11 @@ NEXT_PUBLIC_API_URL=https://jobpulse-ai-backend.onrender.com
 - `/auth/login` & `/auth/register`
 
 ## ✨ Highlights for Resume
-- Heavy use of Framer Motion for buttery smooth animations
-- Role-based authentication and protected routes
-- Real-time features using Socket.IO (backend)
-- Clean, maintainable TypeScript codebase
-- Fully responsive design with Tailwind + DaisyUI
+- Heavy use of Framer Motion for buttery smooth animations.
+- Role-based authentication and protected routes.
+- Real-time features using Socket.IO (backend).
+- Clean, maintainable TypeScript codebase.
+- Fully responsive design with Tailwind + DaisyUI.
 
 ---
 
