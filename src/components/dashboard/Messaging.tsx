@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@/context/AuthContext';
 import { toast } from 'react-toastify';
-import io, { Socket } from 'socket.io-client';
+import io, { type Socket } from 'socket.io-client';
 import { Send, X, MessageCircle } from 'lucide-react';
 
 export interface Message {
@@ -28,7 +28,7 @@ export default function Messaging() {
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Socket Connection - Fixed cleanup type error
+  // Socket Connection - Clean & Type-Safe
   useEffect(() => {
     if (!token || !user?.userId) return;
 
@@ -49,7 +49,6 @@ export default function Messaging() {
 
     setSocket(newSocket);
 
-    // Clean cleanup - returns void explicitly
     return () => {
       newSocket.disconnect();
     };
@@ -269,7 +268,7 @@ export default function Messaging() {
               <div>
                 <MessageCircle className="w-24 h-24 mx-auto text-base-content/30 mb-8" />
                 <h3 className="text-3xl font-semibold mb-3">Real-time Messaging</h3>
-                <p className="text-base-content/60">Select a contact to start chatting with beautiful animations</p>
+                <p className="text-base-content/60">Select a contact to start chatting</p>
               </div>
             </div>
           )}
