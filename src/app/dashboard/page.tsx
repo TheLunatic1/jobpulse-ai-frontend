@@ -8,8 +8,7 @@ import { toast } from 'react-toastify';
 import { motion, AnimatePresence } from 'framer-motion';
 
 
-import Messaging from '@/components/dashboard/Messaging';
-import type { Message } from '@/components/dashboard/Messaging';   // if you exported it, otherwise define locally
+import Messaging, { type Message } from '@/components/dashboard/Messaging';
 import DashboardSidebar from '@/components/dashboard/DashboardSidebar';
 import DashboardHeader from '@/components/dashboard/DashboardHeader';
 import DashboardAICoach from '@/components/dashboard/DashboardAICoach';

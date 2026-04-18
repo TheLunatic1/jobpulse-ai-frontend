@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -7,7 +8,7 @@ import { toast } from 'react-toastify';
 import io, { Socket } from 'socket.io-client';
 import { Send, X, MessageCircle } from 'lucide-react';
 
-interface Message {
+export interface Message {
   _id: string;
   sender: string;
   receiver: string;
@@ -27,7 +28,7 @@ export default function Messaging() {
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Socket Connection - Clean & Type-Safe
+  // Socket Connection - Fixed cleanup type error
   useEffect(() => {
     if (!token || !user?.userId) return;
 
@@ -48,11 +49,9 @@ export default function Messaging() {
 
     setSocket(newSocket);
 
-    // Proper cleanup - explicitly return void
+    // Clean cleanup - returns void explicitly
     return () => {
-      if (newSocket) {
-        newSocket.disconnect();
-      }
+      newSocket.disconnect();
     };
   }, [token, user?.userId, selectedUserId]);
 
@@ -65,37 +64,37 @@ export default function Messaging() {
   }, [messages]);
 
   const loadMessages = async (userId: string, userName: string) => {
-  if (!token || !user) return;
+    if (!token || !user) return;
 
-  setLoading(true);
-  setSelectedUserId(userId);
-  setSelectedUserName(userName);
-  setMessages([]);
-
-  console.log(`🔄 Loading messages for userId: ${userId}`);
-
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/messages/${userId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    const data = await res.json();
-
-    console.log(`📥 Backend response:`, data);
-
-    if (res.ok && data.success) {
-      setMessages(data.messages || []);
-      console.log(`✅ Loaded ${data.messages?.length || 0} messages from MongoDB`);
-    } else {
-      console.log('⚠️ Backend returned no messages');
-      setMessages([]);
-    }
-  } catch (err) {
-    console.error('❌ Failed to load messages:', err);
+    setLoading(true);
+    setSelectedUserId(userId);
+    setSelectedUserName(userName);
     setMessages([]);
-  } finally {
-    setLoading(false);
-  }
+
+    console.log(`🔄 Loading messages for userId: ${userId}`);
+
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/messages/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      const data = await res.json();
+
+      console.log(`📥 Backend response:`, data);
+
+      if (res.ok && data.success) {
+        setMessages(data.messages || []);
+        console.log(`✅ Loaded ${data.messages?.length || 0} messages from MongoDB`);
+      } else {
+        console.log('⚠️ Backend returned no messages');
+        setMessages([]);
+      }
+    } catch (err) {
+      console.error('❌ Failed to load messages:', err);
+      setMessages([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const sendMessage = () => {
@@ -134,10 +133,9 @@ export default function Messaging() {
 
   return (
     <div className="h-full flex flex-col bg-base-100 rounded-3xl overflow-hidden border border-base-300 shadow-2xl">
-      {/* Header */}
       <div className="p-6 border-b border-base-300 bg-base-200 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary to-blue-500 flex items-center justify-center">
+          <div className="w-11 h-11 rounded-2xl bg-linear-to-br from-primary to-blue-500 flex items-center justify-center">
             <MessageCircle className="w-6 h-6 text-white" />
           </div>
           <div>
@@ -202,7 +200,7 @@ export default function Messaging() {
             <>
               <div className="p-5 border-b border-base-300 bg-base-200 flex items-center gap-4">
                 <div className="avatar placeholder">
-                  <div className="bg-gradient-to-br from-primary to-blue-500 text-white w-14 h-14 rounded-2xl flex items-center justify-center text-2xl font-bold">
+                  <div className="bg-linear-to-br from-primary to-blue-500 text-white w-14 h-14 rounded-2xl flex items-center justify-center text-2xl font-bold">
                     {selectedUserName.slice(0, 2)}
                   </div>
                 </div>
