@@ -7,6 +7,7 @@ import { Icons } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
+import { Send } from 'lucide-react';
 
 type MenuItem = {
   id: string;
@@ -42,7 +43,7 @@ export default function DashboardSidebar({
     { id: 'manage-users', label: 'Manage Users', icon: <Icons.UserCircle className="w-5 h-5" />, visibleFor: ['admin'] },
     { id: 'manage-jobs', label: 'Manage Jobs', icon: <Icons.Briefcase className="w-5 h-5" />, visibleFor: ['admin'] },
     { id: 'broadcast', label: 'Broadcast', icon: <Icons.Send className="w-5 h-5" />, visibleFor: ['admin'] },
-    { id: 'messages', label: 'Messages', icon: <Icons.Send className="w-5 h-5" />, visibleFor: ['jobseeker', 'employer'] },
+    { id: 'messages', label: 'Messages', icon: <Icons.Send className="w-5 h-5" />, visibleFor: ['jobseeker', 'employer', 'admin'] },
   ];
 
   const visibleItems = menuItems.filter(item => 
