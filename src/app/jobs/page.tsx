@@ -126,9 +126,8 @@ export default function JobsPage() {
                   location: job.location,
                   salary: job.salary,
                   type: job.type,
-                type: job.type,
-                image: '' // Removed unprofessional image
-              }}
+                  image: '' // Removed unprofessional image
+                }}
               index={index}
               onApply={() => {
                 if (!token) {
