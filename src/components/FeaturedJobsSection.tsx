@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import JobCard from './JobCard';
 import { staggerContainer } from '@/lib/animations';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface Job {
   _id: string;
@@ -17,6 +18,7 @@ interface Job {
 }
 
 export default function FeaturedJobsSection() {
+  const router = useRouter();
   const [featuredJobs, setFeaturedJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -93,9 +95,10 @@ export default function FeaturedJobsSection() {
                   location: job.location,
                   salary: job.salary,
                   type: job.type,
-                  image: `https://picsum.photos/id/${50 + i}/400/220`
+                  image: ''
                 }} 
                 index={i} 
+                onApply={() => router.push('/jobs')}
               />
             ))}
           </motion.div>

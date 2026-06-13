@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Icons } from '@/components/icons';
 import { staggerContainer, fadeInUp } from '@/lib/animations';
 import { cn } from '@/lib/utils';
+import { useRouter } from 'next/navigation';
 
 function useTypingLine(text: string, speed = 68, startDelay = 0) {
   const [displayed, setDisplayed] = useState('');
@@ -43,6 +44,7 @@ function useTypingLine(text: string, speed = 68, startDelay = 0) {
 }
 
 export default function HeroSection() {
+  const router = useRouter();
   const line1 = useTypingLine('Find Your Dream Job', 70, 500);
   const line2 = useTypingLine('with AI Power', 70, 1500);
 
@@ -140,8 +142,21 @@ export default function HeroSection() {
         </motion.p>
 
         <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-6 justify-center pb-12">
-          <motion.button whileHover={{ scale: 1.05 }} className="btn btn-primary btn-lg px-14 h-16 text-lg rounded-2xl shadow-lg shadow-primary/30">Explore Jobs</motion.button>
-          <motion.button whileHover={{ scale: 1.05 }} className="btn btn-outline btn-primary btn-lg px-14 h-16 text-lg rounded-2xl">Talk to AI Coach</motion.button>
+          <motion.button 
+            whileHover={{ scale: 1.05 }} 
+            onClick={() => router.push('/jobs')}
+            className="btn btn-primary btn-lg w-full sm:w-auto px-14 h-16 text-lg rounded-2xl shadow-lg shadow-primary/30"
+          >
+            Explore Jobs
+          </motion.button>
+          
+          <motion.button 
+            whileHover={{ scale: 1.05 }} 
+            onClick={() => router.push('/ai-coach')}
+            className="btn btn-outline btn-primary btn-lg w-full sm:w-auto px-14 h-16 text-lg rounded-2xl"
+          >
+            Talk to AI Coach
+          </motion.button>
         </motion.div>
       </motion.div>
     </section>

@@ -56,7 +56,11 @@ export default function JobCard({ job, index = 0, onApply }: { job: Job; index?:
 
         <motion.button
           whileHover={{ scale: 1.05 }}
-          onClick={onApply}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (onApply) onApply();
+          }}
           className="btn btn-primary mt-auto w-full text-base py-3 shadow-md group-hover:shadow-primary/40"
         >
           View Details & Apply
