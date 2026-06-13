@@ -32,7 +32,7 @@ export default function JobsPage() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs`, { cache: 'no-store' });
         const data = await res.json();
         if (data.success) {
           setJobs(data.jobs || []);
@@ -126,10 +126,22 @@ export default function JobsPage() {
                   location: job.location,
                   salary: job.salary,
                   type: job.type,
-                  image: `https://picsum.photos/id/${40 + index}/400/220`
-                }}
-                index={index}
-              />
+                type: job.type,
+                image: '' // Removed unprofessional image
+              }}
+              index={index}
+              onApply={() => {
+                if (!token) {
+                  toast.info('Please log in to apply for this job', { theme: 'dark' });
+                  return;
+                }
+                if (user?.role !== 'jobseeker') {
+                  toast.error('Only Job Seekers can apply for jobs', { theme: 'dark' });
+                  return;
+                }
+                setSelectedJob(job);
+              }}
+            />
             ))}
           </motion.div>
 

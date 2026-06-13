@@ -30,6 +30,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${inter.variable} font-sans antialiased bg-base-100 text-base-content min-h-screen`}
+        suppressHydrationWarning
       >
         <ForceDarkMode />
         <AuthProvider>

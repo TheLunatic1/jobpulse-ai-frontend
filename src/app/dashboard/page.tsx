@@ -21,6 +21,9 @@ import AdminPanel from '@/components/dashboard/AdminPanel';
 import Link from 'next/link';
 import { Icons } from '@/components/icons';
 
+import ProfileSettings from '@/components/dashboard/ProfileSettings';
+import BroadcastPanel from '@/components/dashboard/BroadcastPanel';
+
 export default function DashboardPage() {
   const { user, token, loading } = useAuth();
   const router = useRouter();
@@ -182,21 +185,21 @@ export default function DashboardPage() {
 
                   {user?.role === 'admin' && (
                     <>
-                      <div className="bg-base-200 rounded-3xl p-8 text-center border border-base-300">
-                        <div className="text-4xl font-bold text-primary">{stats.totalUsers}</div>
-                        <div className="text-sm text-base-content/70 mt-2">Total Users</div>
+                      <div className="bg-base-200 rounded-3xl p-8 text-center border border-base-300 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="text-5xl font-extrabold text-primary mb-3">{stats.totalUsers}</div>
+                        <div className="text-lg font-medium text-base-content/80">Total Users</div>
                       </div>
-                      <div className="bg-base-200 rounded-3xl p-8 text-center border border-base-300">
-                        <div className="text-4xl font-bold text-red-400">{stats.pendingJobs}</div>
-                        <div className="text-sm text-base-content/70 mt-2">Pending Jobs</div>
+                      <div className="bg-base-200 rounded-3xl p-8 text-center border border-base-300 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="text-5xl font-extrabold text-red-400 mb-3">{stats.pendingJobs}</div>
+                        <div className="text-lg font-medium text-base-content/80">Pending Jobs</div>
                       </div>
-                      <div className="bg-base-200 rounded-3xl p-8 text-center border border-base-300">
-                        <div className="text-4xl font-bold text-purple-400">{stats.totalJobs}</div>
-                        <div className="text-sm text-base-content/70 mt-2">Total Jobs</div>
+                      <div className="bg-base-200 rounded-3xl p-8 text-center border border-base-300 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="text-5xl font-extrabold text-purple-400 mb-3">{stats.totalJobs}</div>
+                        <div className="text-lg font-medium text-base-content/80">Total Jobs</div>
                       </div>
-                      <div className="bg-base-200 rounded-3xl p-8 text-center border border-base-300">
-                        <div className="text-4xl font-bold text-green-400">{stats.applicationsToday}</div>
-                        <div className="text-sm text-base-content/70 mt-2">Applications Today</div>
+                      <div className="bg-base-200 rounded-3xl p-8 text-center border border-base-300 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="text-5xl font-extrabold text-green-400 mb-3">{stats.applicationsToday}</div>
+                        <div className="text-lg font-medium text-base-content/80">Applications Today</div>
                       </div>
                     </>
                   )}
@@ -277,6 +280,8 @@ export default function DashboardPage() {
             {activeView === 'manage-users' && <AdminPanel activeView={activeView} />}
             {activeView === 'manage-jobs' && <AdminPanel activeView={activeView} />}
             {activeView === 'messages' && <Messaging />}
+            {activeView === 'profile' && <ProfileSettings />}
+            {activeView === 'broadcast' && <BroadcastPanel />}
           </AnimatePresence>
         </div>
       </div>

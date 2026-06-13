@@ -44,6 +44,7 @@ export default function DashboardSidebar({
     { id: 'manage-jobs', label: 'Manage Jobs', icon: <Icons.Briefcase className="w-5 h-5" />, visibleFor: ['admin'] },
     { id: 'broadcast', label: 'Broadcast', icon: <Icons.Send className="w-5 h-5" />, visibleFor: ['admin'] },
     { id: 'messages', label: 'Messages', icon: <Icons.Send className="w-5 h-5" />, visibleFor: ['jobseeker', 'employer', 'admin'] },
+    { id: 'profile', label: 'Profile Settings', icon: <Icons.UserCircle className="w-5 h-5" />, visibleFor: ['jobseeker', 'employer', 'admin'] },
   ];
 
   const visibleItems = menuItems.filter(item => 
@@ -60,7 +61,7 @@ export default function DashboardSidebar({
       initial={false}
       animate={{ x: sidebarOpen ? 0 : -280 }}
       transition={{ type: 'spring', damping: 25, stiffness: 180 }}
-      className="w-72 bg-base-200 border-r border-base-300 fixed h-full z-50 lg:static lg:translate-x-0 overflow-y-auto shadow-2xl"
+      className="w-72 bg-base-200 border-r border-base-300 fixed h-screen z-50 lg:sticky lg:top-0 lg:translate-x-0 overflow-y-auto shadow-2xl flex flex-col"
     >
       <div className="p-6">
         <div className="flex items-center justify-between mb-8">

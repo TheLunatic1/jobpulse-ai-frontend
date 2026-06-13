@@ -56,7 +56,9 @@ export default function AdminPanel({ activeView }: { activeView: string }) {
   }, [token]);
 
   const deleteUser = async (userId: string) => {
-    if (!confirm('Delete this user permanently?')) return;
+    // Optimistic UI approach or standard toast without blocking confirm
+    const previousUsers = [...users];
+    setUsers(prev => prev.filter(u => u._id !== userId));
 
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/users/${userId}`, {
@@ -65,10 +67,29 @@ export default function AdminPanel({ activeView }: { activeView: string }) {
       });
 
       if (res.ok) {
-        toast.success('User deleted successfully');
-        setUsers(prev => prev.filter(u => u._id !== userId));
+        toast.success('User deleted successfully', { theme: 'dark' });
       } else {
-        toast.error('Failed to delete user');
+        toast.error('Failed to delete user', { theme: 'dark' });
+        setUsers(previousUsers); // Revert on failure
+      }
+    } catch (err) {
+      toast.error('Something went wrong', { theme: 'dark' });
+      setUsers(previousUsers);
+    }
+  };
+
+  const updateJobStatus = async (jobId: string, status: 'approved' | 'rejected') => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs/${jobId}/${status === 'approved' ? 'approve' : 'reject'}`, {
+        method: 'PATCH',
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (res.ok) {
+        toast.success(`Job ${status} successfully`);
+        setJobs(prev => prev.filter(j => j._id !== jobId));
+      } else {
+        toast.error(`Failed to ${status} job`);
       }
     } catch (err) {
       toast.error('Something went wrong');
@@ -136,14 +157,14 @@ export default function AdminPanel({ activeView }: { activeView: string }) {
               <div className="mt-8 flex gap-4">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
-                  onClick={() => { /* approve logic from previous version */ }}
+                  onClick={() => updateJobStatus(job._id, 'approved')}
                   className="btn btn-success flex-1"
                 >
                   Approve Job
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
-                  onClick={() => { /* reject logic */ }}
+                  onClick={() => updateJobStatus(job._id, 'rejected')}
                   className="btn btn-error flex-1"
                 >
                   Reject Job

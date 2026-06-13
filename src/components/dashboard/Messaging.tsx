@@ -123,13 +123,26 @@ export default function Messaging() {
     setInput('');
   };
 
-  const demoContacts = [
-    { id: 'demo-recruiter-1', name: 'TechNova HR', role: 'Recruiter' },
-    { id: 'demo-recruiter-2', name: 'Daffodil Talent', role: 'Recruiter' },
-  ];
+  const [contacts, setContacts] = useState<{_id: string, name: string, role: string}[]>([]);
+
+  useEffect(() => {
+    if (!token) return;
+    const fetchContacts = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/messages/contacts/list`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        const data = await res.json();
+        if (data.success) setContacts(data.contacts || []);
+      } catch (err) {
+        console.error('Failed to load contacts');
+      }
+    };
+    fetchContacts();
+  }, [token]);
 
   return (
-    <div className="h-full flex flex-col bg-base-100 rounded-3xl overflow-hidden border border-base-300 shadow-2xl">
+    <div className="h-[calc(100vh-140px)] flex flex-col bg-base-100 rounded-3xl overflow-hidden border border-base-300 shadow-2xl">
       <div className="p-6 border-b border-base-300 bg-base-200 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div className="w-11 h-11 rounded-2xl bg-linear-to-br from-primary to-blue-500 flex items-center justify-center">
@@ -166,14 +179,14 @@ export default function Messaging() {
             <input type="text" placeholder="Search contacts..." className="input input-bordered w-full bg-base-100" />
           </div>
           <div className="space-y-3">
-            {demoContacts.map((contact) => (
+            {contacts.map((contact) => (
               <motion.button
-                key={contact.id}
+                key={contact._id}
                 whileHover={{ scale: 1.02, x: 6 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => loadMessages(contact.id, contact.name)}
+                onClick={() => loadMessages(contact._id, contact.name)}
                 className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all text-left ${
-                  selectedUserId === contact.id ? 'bg-primary/10 border border-primary/40' : 'hover:bg-base-300'
+                  selectedUserId === contact._id ? 'bg-primary/10 border border-primary/40' : 'hover:bg-base-300'
                 }`}
               >
                 <div className="avatar placeholder">
@@ -183,7 +196,7 @@ export default function Messaging() {
                 </div>
                 <div className="flex-1">
                   <p className="font-semibold">{contact.name}</p>
-                  <p className="text-xs text-base-content/60">{contact.role}</p>
+                  <p className="text-xs text-base-content/60 capitalize">{contact.role}</p>
                 </div>
                 <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
               </motion.button>

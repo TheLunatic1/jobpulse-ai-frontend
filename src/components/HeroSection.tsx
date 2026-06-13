@@ -110,20 +110,20 @@ export default function HeroSection() {
         <Icons.User />
       </motion.div>
 
-      {/* Particles – slightly larger & more visible */}
+      {/* Particles – moved behind text and reduced opacity */}
       {Array.from({ length: 14 }).map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-4 h-4 md:w-6 md:h-6 rounded-full bg-primary/80 pointer-events-none"
+          className="absolute w-4 h-4 md:w-6 md:h-6 rounded-full bg-primary/20 pointer-events-none z-0"
           style={{ top: `${10 + i * 6}%`, left: `${7 + i * 8}%` }}
-          animate={{ y: [0, -100 - i * 6, 0], scale: [1, 1.7, 1], opacity: [0.6, 1, 0.6] }}
+          animate={{ y: [0, -100 - i * 6, 0], scale: [1, 1.7, 1], opacity: [0.3, 0.7, 0.3] }}
           transition={{ duration: 8 + i, repeat: Infinity, repeatType: 'reverse', delay: i * 0.35 }}
         />
       ))}
 
       {/* Main Content - 2 lines */}
       <motion.div variants={staggerContainer(0.25)} initial="hidden" animate="visible" className="relative z-10 container mx-auto px-6 text-center max-w-5xl">
-        <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tighter leading-none mb-6">
+        <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tighter leading-none mb-8">
           <span className="text-primary block whitespace-nowrap overflow-hidden text-ellipsis min-h-[1.2em]">
             {line1.displayed}
             {activeLine === 1 && <span className="text-primary ml-1 animate-pulse">|</span>}
@@ -135,13 +135,13 @@ export default function HeroSection() {
           </span>
         </motion.h1>
 
-        <motion.p variants={fadeInUp} className="text-lg md:text-xl text-base-content/80 max-w-3xl mx-auto mb-12">
+        <motion.p variants={fadeInUp} className="text-lg md:text-2xl text-base-content/80 max-w-3xl mx-auto mb-16">
           AI-powered matching • 24/7 career coach • Smart resume tools • Interview simulator
         </motion.p>
 
-        <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-6 justify-center">
-          <motion.button whileHover={{ scale: 1.08 }} className="btn btn-primary btn-lg px-12 text-lg">Explore Jobs</motion.button>
-          <motion.button whileHover={{ scale: 1.06 }} className="btn btn-outline btn-primary btn-lg px-12 text-lg">Talk to AI Coach</motion.button>
+        <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-6 justify-center pb-12">
+          <motion.button whileHover={{ scale: 1.05 }} className="btn btn-primary btn-lg px-14 h-16 text-lg rounded-2xl shadow-lg shadow-primary/30">Explore Jobs</motion.button>
+          <motion.button whileHover={{ scale: 1.05 }} className="btn btn-outline btn-primary btn-lg px-14 h-16 text-lg rounded-2xl">Talk to AI Coach</motion.button>
         </motion.div>
       </motion.div>
     </section>
