@@ -21,7 +21,7 @@ interface Job {
 }
 
 export default function JobsPage() {
-  const { token } = useAuth();
+  const { token, user } = useAuth();
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
